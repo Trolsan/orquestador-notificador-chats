@@ -78,3 +78,29 @@ Continuar Fase 2: API FastAPI con tipado Pydantic, servicio `alert_evaluator`, c
 Generó el núcleo del negocio en minutos, separando ruta HTTP y lógica pura para facilitar pruebas (Cypress) y sustentación técnica.
 
 ---
+
+## Entrada 4 — Fases 3 y 4: Pruebas locales y Dockerfile
+
+| Campo | Detalle |
+|-------|---------|
+| **Fecha** | 2026-06-04 |
+| **Herramienta** | Cursor (Composer) |
+| **Objetivo** | Validar contrato `POST /webhook` con casos true/false y contenerizar la API con Dockerfile. |
+
+### Prompt (resumen)
+
+Continuar Fase 3 (pruebas manuales curl/script) y Fase 4 (Dockerfile funcional para la API).
+
+### Resultado obtenido
+
+- `scripts/test-api-local.ps1` — 5 casos + health check automatizados.
+- `docs/manual-testing.md` — checklist de pruebas manuales.
+- `backend/Dockerfile` — imagen `python:3.12-slim`, uvicorn en puerto 8000.
+- `backend/.dockerignore` — excluye `.venv`, caches y `.env`.
+- Ejecución del script: **5/5 tests PASS** contra API en `localhost:8000`.
+
+### Cómo ayudó al proyecto
+
+Automatizó la validación del contrato antes de Cypress y dejó la misma imagen lista para Compose (Fase 5) y App Runner (Fase 8).
+
+---

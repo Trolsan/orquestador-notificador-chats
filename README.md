@@ -2,7 +2,7 @@
 
 Prueba de concepto (PoC) para un servicio que procesa mensajes simulados, evalúa si requieren atención inmediata y expone una API desplegable en AWS. Incluye orquestación con **n8n**, contenedorización con **Docker**, pruebas con **Cypress** y evidencia de uso de **IA**.
 
-> **Estado del proyecto:** Fase 2 completada (API FastAPI). Pendiente: Docker, n8n, Cypress y AWS.
+> **Estado del proyecto:** Fases 3–4 completadas (pruebas locales + Dockerfile). Pendiente: Docker Compose, n8n, Cypress y AWS.
 
 ## Arquitectura (resumen)
 
@@ -18,7 +18,7 @@ Documentación detallada: [ARCHITECTURE.md](./ARCHITECTURE.md).
 
 | Herramienta | Uso |
 |-------------|-----|
-| Python 3.11+ | API FastAPI (fases 2+) |
+| Python 3.11–3.12 (recomendado) | API FastAPI local; Docker usa 3.12 |
 | Docker & Docker Compose | API + n8n local (fases 4–5) |
 | Node.js 18+ | Cypress (fase 7) |
 | Cuenta AWS | Despliegue de la API (fase 8) |
@@ -50,23 +50,34 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
 Documentación interactiva: [http://localhost:8000/docs](http://localhost:8000/docs)
 
-**Probar el endpoint:**
+**Probar con script automatizado (Fase 3):**
 
 ```powershell
-# alert: true
-curl -X POST http://localhost:8000/webhook `
-  -H "Content-Type: application/json" `
-  -d '{"user":"ana","message":"Necesito ayuda urgente"}'
+# Con la API corriendo en otra terminal
+.\scripts\test-api-local.ps1
+```
 
-# alert: false
-curl -X POST http://localhost:8000/webhook `
-  -H "Content-Type: application/json" `
-  -d '{"user":"ana","message":"Todo funciona bien"}'
+Checklist y casos manuales: [docs/manual-testing.md](./docs/manual-testing.md).
+
+### API con Docker (Fase 4)
+
+```powershell
+cd backend
+docker build -t orquestador-api .
+docker run --rm -p 8000:8000 orquestador-api
+```
+
+Probar de nuevo:
+
+```powershell
+cd ..
+.\scripts\test-api-local.ps1
 ```
 
 | Fase | Comando / acción |
 |------|------------------|
 | API local | Ver arriba |
+| Docker (solo API) | `docker build` + `docker run` en `backend/` |
 | Docker Compose (API + n8n) | _Pendiente — Fase 5_ |
 | Cypress | _Pendiente — Fase 7_ |
 | URL pública AWS | _Pendiente — Fase 8_ |
