@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment
+.env
+.env.local
+
+# Node / Cypress
+node_modules/
+cypress/videos/
+cypress/screenshots/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# n8n local data (if mounted)
+.n8n/
+
+# Logs
+*.log
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# Node / Cypress
+node_modules/
+cypress/videos/
+cypress/screenshots/
+
+# OS
+.DS_Store
+Thumbs.db

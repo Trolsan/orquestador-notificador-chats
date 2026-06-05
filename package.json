@@ -1,0 +1,11 @@
+{
+  "name": "orquestador-notificador-chats",
+  "version": "0.1.0",
+  "private": true,
+  "description": "PoC Orquestador Notificador de Chats - prueba técnica",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
+  },
+  "devDependencies": {}
+}
