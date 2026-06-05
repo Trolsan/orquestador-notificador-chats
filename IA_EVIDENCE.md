@@ -129,3 +129,28 @@ Continuar Fase 5: `docker-compose.yml` que levante API + n8n localmente para pro
 Unifica el entorno de demo para la sustentación y evita el error más común: usar `localhost` desde dentro del contenedor n8n.
 
 ---
+
+## Entrada 6 — Fase 6: Workflow n8n exportado
+
+| Campo | Detalle |
+|-------|---------|
+| **Fecha** | 2026-06-04 |
+| **Herramienta** | Cursor (Composer) |
+| **Objetivo** | Crear y versionar flujos n8n (manual + webhook) que POSTeen a `POST /webhook`. |
+
+### Prompt (resumen)
+
+Continuar Fase 6: workflow n8n básico, export JSON al repo, documentación de importación y prueba end-to-end.
+
+### Resultado obtenido
+
+- `n8n/workflow-orquestador.json` — Manual Trigger + Set Payload + HTTP Request.
+- `n8n/workflow-orquestador-webhook.json` — Webhook simulado + HTTP Request.
+- `docs/n8n-workflow.md` y `scripts/test-n8n-webhook.ps1`.
+- Cumple entregable obligatorio: archivo `.json` del flujo en el repositorio.
+
+### Cómo ayudó al proyecto
+
+Entrega el orquestador requerido por el PDF y deja dos modos de demo (clic manual y curl al webhook) para la sustentación en vivo.
+
+---

@@ -2,7 +2,7 @@
 
 Prueba de concepto (PoC) para un servicio que procesa mensajes simulados, evalúa si requieren atención inmediata y expone una API desplegable en AWS. Incluye orquestación con **n8n**, contenedorización con **Docker**, pruebas con **Cypress** y evidencia de uso de **IA**.
 
-> **Estado del proyecto:** Fase 5 completada (Docker Compose API + n8n). Pendiente: workflow n8n, Cypress y AWS.
+> **Estado del proyecto:** Fase 6 completada (workflows n8n exportados). Pendiente: Cypress y AWS.
 
 ## Arquitectura (resumen)
 
@@ -92,15 +92,28 @@ Probar API desde el host:
 .\scripts\test-api-local.ps1
 ```
 
-Configurar workflow n8n (Fase 6): HTTP Request → `http://api:8000/webhook`.
+### Workflow n8n (Fase 6)
 
-Guía completa: [docs/docker-compose.md](./docs/docker-compose.md).
+```powershell
+# 1. Levantar stack
+docker compose up -d
+
+# 2. Importar en http://localhost:5678
+#    Archivo: n8n/workflow-orquestador.json
+
+# 3. Execute workflow en n8n (Manual Trigger)
+#    o probar webhook:
+.\scripts\test-n8n-webhook.ps1
+```
+
+Guías: [docs/n8n-workflow.md](./docs/n8n-workflow.md) · [docs/docker-compose.md](./docs/docker-compose.md).
 
 | Fase | Comando / acción |
 |------|------------------|
 | API local | Ver arriba |
 | Docker (solo API) | `docker build` + `docker run` en `backend/` |
 | Docker Compose (API + n8n) | `docker compose up --build -d` |
+| Workflow n8n | Importar `n8n/workflow-orquestador.json` |
 | Cypress | _Pendiente — Fase 7_ |
 | URL pública AWS | _Pendiente — Fase 8_ |
 

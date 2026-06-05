@@ -52,7 +52,9 @@ flowchart TB
 
 ### `n8n/`
 
-- Workflow exportado en JSON versionado en el repo.
+- `workflow-orquestador.json` — Manual Trigger → Set Payload → HTTP POST a la API.
+- `workflow-orquestador-webhook.json` — Webhook POST simulado → HTTP POST a la API.
+- URL interna en Compose: `http://api:8000/webhook`.
 
 ### `cypress/`
 
