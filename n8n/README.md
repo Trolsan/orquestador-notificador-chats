@@ -11,4 +11,12 @@ En la **Fase 6** se exportará aquí el flujo `workflow-orquestador.json` desde 
 }
 ```
 
-**Endpoint destino:** `POST /webhook` en el servicio `api` (Docker) o `http://localhost:8000` en desarrollo local.
+**Endpoint destino:**
+
+| Entorno | URL del HTTP Request |
+|---------|----------------------|
+| Docker Compose (n8n en contenedor) | `http://api:8000/webhook` |
+| API local sin Docker | `http://localhost:8000/webhook` |
+| Cypress / host → API en Docker | `http://localhost:8000/webhook` |
+
+> **Importante:** Dentro del contenedor n8n, `localhost` apunta al propio n8n, no a la API.

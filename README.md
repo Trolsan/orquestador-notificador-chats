@@ -2,7 +2,7 @@
 
 Prueba de concepto (PoC) para un servicio que procesa mensajes simulados, evalúa si requieren atención inmediata y expone una API desplegable en AWS. Incluye orquestación con **n8n**, contenedorización con **Docker**, pruebas con **Cypress** y evidencia de uso de **IA**.
 
-> **Estado del proyecto:** Fases 3–4 completadas (pruebas locales + Dockerfile). Pendiente: Docker Compose, n8n, Cypress y AWS.
+> **Estado del proyecto:** Fase 5 completada (Docker Compose API + n8n). Pendiente: workflow n8n, Cypress y AWS.
 
 ## Arquitectura (resumen)
 
@@ -33,7 +33,7 @@ orquestador-notificador-chats/
 ├── docs/             # Guías complementarias (AWS, etc.)
 ├── ARCHITECTURE.md
 ├── IA_EVIDENCE.md    # Evidencia de prompts con IA
-└── docker-compose.yml  # (fase 5)
+└── docker-compose.yml
 ```
 
 ## Inicio rápido
@@ -74,11 +74,33 @@ cd ..
 .\scripts\test-api-local.ps1
 ```
 
+### Docker Compose — API + n8n (Fase 5)
+
+```powershell
+# Desde la raíz del proyecto
+docker compose up --build -d
+```
+
+| Servicio | URL |
+|----------|-----|
+| API | http://localhost:8000 |
+| n8n | http://localhost:5678 |
+
+Probar API desde el host:
+
+```powershell
+.\scripts\test-api-local.ps1
+```
+
+Configurar workflow n8n (Fase 6): HTTP Request → `http://api:8000/webhook`.
+
+Guía completa: [docs/docker-compose.md](./docs/docker-compose.md).
+
 | Fase | Comando / acción |
 |------|------------------|
 | API local | Ver arriba |
 | Docker (solo API) | `docker build` + `docker run` en `backend/` |
-| Docker Compose (API + n8n) | _Pendiente — Fase 5_ |
+| Docker Compose (API + n8n) | `docker compose up --build -d` |
 | Cypress | _Pendiente — Fase 7_ |
 | URL pública AWS | _Pendiente — Fase 8_ |
 

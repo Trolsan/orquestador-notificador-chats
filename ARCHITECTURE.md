@@ -62,7 +62,7 @@ flowchart TB
 
 - **Dockerfile** (`backend/Dockerfile`): imagen basada en `python:3.12-slim`, expone puerto `8000`, ejecuta `uvicorn app.main:app`.
 - **Build context:** directorio `backend/` (no la raíz del repo).
-- **docker-compose.yml** (Fase 5): servicios `api` y `n8n` en red compartida; n8n llama a `http://api:8000/webhook`.
+- **docker-compose.yml**: servicios `api` (build `backend/`) y `n8n` (`n8nio/n8n`). Red interna Docker; n8n usa `http://api:8000/webhook`. API publicada en `localhost:8000`, n8n en `localhost:5678`. Healthcheck en `api` antes de arrancar n8n.
 
 ## Decisiones técnicas
 

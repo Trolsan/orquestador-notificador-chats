@@ -104,3 +104,28 @@ Continuar Fase 3 (pruebas manuales curl/script) y Fase 4 (Dockerfile funcional p
 Automatizó la validación del contrato antes de Cypress y dejó la misma imagen lista para Compose (Fase 5) y App Runner (Fase 8).
 
 ---
+
+## Entrada 5 — Fase 5: Docker Compose (API + n8n)
+
+| Campo | Detalle |
+|-------|---------|
+| **Fecha** | 2026-06-04 |
+| **Herramienta** | Cursor (Composer) |
+| **Objetivo** | Levantar API y n8n con un solo comando; red interna con hostname `api`. |
+
+### Prompt (resumen)
+
+Continuar Fase 5: `docker-compose.yml` que levante API + n8n localmente para probar el flujo completo.
+
+### Resultado obtenido
+
+- `docker-compose.yml` con servicios `api` y `n8n`, volumen `n8n_data`, healthcheck y `depends_on`.
+- `docs/docker-compose.md` — guía operativa y troubleshooting de red.
+- Variables `API_PORT`, `N8N_PORT`, `TZ` en `.env.example`.
+- Documentación de URL interna `http://api:8000/webhook` para el workflow n8n.
+
+### Cómo ayudó al proyecto
+
+Unifica el entorno de demo para la sustentación y evita el error más común: usar `localhost` desde dentro del contenedor n8n.
+
+---
